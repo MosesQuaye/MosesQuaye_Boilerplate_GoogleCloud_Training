@@ -19,7 +19,11 @@ services:
     env_file:
       - .env.dev
     command: >
-      sh -c "sh migrations.sh && python manage.py runserver 0.0.0.0:8000"
+      sh -c "python manage.py makemigrations;
+      python manage.py migrate;
+      python manage.py shell < tools/create_superuser.py || true;
+      python manage.py collectstatic --noinput;
+      python manage.py runserver 0.0.0.0:8000"
     depends_on:
       - db
 
@@ -33,6 +37,8 @@ services:
       - "3000:3000"
     volumes:
       - ./client:/src
+      # Keep node_modules inside the container (avoid Windows bind-mount issues)
+      - /src/node_modules
     env_file:
       - .env.dev
     command: >

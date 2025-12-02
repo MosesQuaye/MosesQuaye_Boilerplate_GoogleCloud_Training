@@ -159,6 +159,11 @@ SWAGGER_SETTINGS = {
     }
 }
 
+DJOSER = {
+    "SEND_ACTIVATION_EMAIL": False,
+    "USER_CREATE_PASSWORD_RETYPE": False,
+}
+
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
     "site_title": "Admin Panel",
