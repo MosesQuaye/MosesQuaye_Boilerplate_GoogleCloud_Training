@@ -11,7 +11,8 @@ import { Select } from "./components/select.theme";
 export const customTheme = extendTheme(
   {
     fonts: {
-      body: "poppins",
+      body: "David, 'Times New Roman', Times, serif",
+      heading: "David, 'Times New Roman', Times, serif",
     },
     colors: {
       primary: {
