@@ -20,7 +20,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-
 SECRET_KEY = os.environ.get(
     "SECRET_KEY",
     default="django-insecure-ncs&&)001*$$7mgs822pvidtwj(pf=jc=g851__q!ysy5bkwzk",
@@ -29,7 +28,9 @@ SECRET_KEY = os.environ.get(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get("DJANGO_DEBUG", default=True))
 
+# Allow all hosts (Required for Cloud Run)
 ALLOWED_HOSTS = ["*"]
+
 
 # Application definition
 
@@ -164,21 +165,35 @@ DJOSER = {
     "USER_CREATE_PASSWORD_RETYPE": False,
 }
 
+# Jazzmin Configuration
 JAZZMIN_SETTINGS = {
-    # title of the window (Will default to current_admin_site.site_title if absent or None)
+    # title of the window
     "site_title": "Admin Panel",
-    # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    # Title on the brand
     "site_brand": "Server",
     "site_header": "Server",
     # CSS classes that are applied to the logo above
     "site_logo_classes": "img-circle",
-    # Relative path to a favicon for your site, will default to site_logo if absent (ideally 32x32 px)
+    # Relative path to a favicon for your site
     "site_icon": None,
-    # "related_modal_active": True,
     # Welcome text on the login screen
     "welcome_sign": "Welcome to the Server Admin Panel",
     "show_ui_builder": True,
+
+    # --- Enhanced UI Settings ---
+    "changeform_format": "horizontal_tabs",
+    "changeform_format_overrides": {
+        "auth.user": "collapsible",
+        "auth.group": "vertical_tabs",
+    },
+    "language_chooser": True,
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",       
+    },
 }
+
 JAZZMIN_UI_TWEAKS = {
     "navbar_small_text": False,
     "footer_small_text": False,
